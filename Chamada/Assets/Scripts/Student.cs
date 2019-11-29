@@ -24,7 +24,9 @@ public class Student
     public string parentCpf;
     public string parentPhone;
     public string parentCellphone;
+
     public bool Activity;
+    public List<Attendance> attendance;
 
     public string StudentInfo()
     {

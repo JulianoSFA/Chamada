@@ -8,6 +8,13 @@ public class StudentEntry : MonoBehaviour
     public GameObject Button;
     public GameObject blankSpace;
 
+    GameObject content;
+
+    private void Start()
+    {
+        content = this.gameObject;
+    }
+
     public void SpawnStudentButton()
     {
         if(db.studentList.Count > 0)
@@ -23,7 +30,20 @@ public class StudentEntry : MonoBehaviour
         else
         {
             blankSpace.SetActive(true);
+        }   
+    }
+
+    public void ComputeAttendance()
+    {
+        List<GameObject> childList = new List<GameObject>();
+        for (int i = 0; i < content.transform.childCount; i++)
+        {
+            childList.Add(content.transform.GetChild(i).gameObject);
+            Debug.Log("Novo registo");
         }
-        
+        foreach (GameObject child in childList)
+        {
+            child.GetComponent<StudentViewController>().SetAttendance();
+        }
     }
 }
