@@ -15,7 +15,12 @@ public class StudentEntry : MonoBehaviour
         content = this.gameObject;
     }
 
-    public void SpawnStudentButton()
+    public void SpawnButtons()
+    {
+        StartCoroutine(SpawnStudentButton());
+    }
+
+    IEnumerator SpawnStudentButton()
     {
         if(db.studentList.Count > 0)
         {
@@ -30,7 +35,8 @@ public class StudentEntry : MonoBehaviour
         else
         {
             blankSpace.SetActive(true);
-        }   
+        }
+        yield return new WaitForSeconds(1f);
     }
 
     public void ComputeAttendance()
@@ -39,11 +45,20 @@ public class StudentEntry : MonoBehaviour
         for (int i = 0; i < content.transform.childCount; i++)
         {
             childList.Add(content.transform.GetChild(i).gameObject);
-            Debug.Log("Novo registo");
+            Debug.Log("Novo registo" + childList[i].name);
         }
         foreach (GameObject child in childList)
         {
-            child.GetComponent<StudentViewController>().SetAttendance();
+            child.GetComponent<ShowStudent>().SetAttendance();
+            Debug.Log(child.GetComponent<ShowStudent>().sName.ToString());
+        }
+    }
+
+    public void ClearEntry()
+    {
+        foreach (Transform child in content.transform)
+        {
+            Destroy(child.gameObject);
         }
     }
 }
