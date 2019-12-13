@@ -36,20 +36,18 @@ public class DatabaseManager:MonoBehaviour
 
     public void AddData()
     {
-        db.studentList.Add(CreateData(new Student()));
-        foreach (Student s in db.studentList)
-        {
-            Debug.Log(s.StudentInfo());
-        }
+        Student student = new Student();
+        db.studentList.Add(CreateData(student));
+        Debug.Log(student.sName);
     }
 
     Student CreateData(Student s)
     {
         s.sName = sName.text;
         if (gender.value == 0)
-            s.gender = false;
+            s.gender = false; //masculino
         else
-            s.gender = true;
+            s.gender = true; //feminino
         s.birthDate = birthDate.text;
         s.instrument = instrument.text;
         s.instrumentNumber = instrumentNumber.text;

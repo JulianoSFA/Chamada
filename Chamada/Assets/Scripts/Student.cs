@@ -5,7 +5,7 @@ using UnityEngine;
 public class Student
 {
     public string sName;
-    public bool gender; // 0 = male/ 1 = female
+    public bool gender; // 0 = masculino/ 1 = feminino
     public string birthDate;
     public string instrument;
     public string instrumentNumber;
@@ -28,9 +28,39 @@ public class Student
     public bool Activity;
     public List<Attendance> attendance;
 
-    public string StudentInfo()
+    int count;
+    int rowCount;
+
+    public int Absences()
     {
-        string info = string.Format("Nome:{0} Gênero:{1} Data de nascimento:{2} Instrumento:{3} N° do instrumento:{4} RG:{5} CPF:{6} Endereço:{7}", sName, gender, birthDate, instrument, instrumentNumber, rg, cpf, adress);
-        return info;
+        count = 0;
+        foreach (Attendance a in attendance)
+        {
+            if (!a.showedUp)
+            {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public int AbsencesInARow()
+    {
+        foreach (Attendance a in attendance)
+        {
+            if (!a.showedUp)
+            {
+                rowCount++;
+            }
+            else
+            {
+                rowCount--;
+            }
+        }
+        if (rowCount>0)
+        {
+            rowCount = 0;
+        }
+        return rowCount;
     }
 }
