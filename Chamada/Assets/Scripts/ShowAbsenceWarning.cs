@@ -10,7 +10,7 @@ public class ShowAbsenceWarning : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(AbsenceWarning());
+        //StartCoroutine(AbsenceWarning());
     }
 
     IEnumerator AbsenceWarning()
@@ -38,4 +38,5 @@ public class ShowAbsenceWarning : MonoBehaviour
 
         yield return null;
     }
+
 }

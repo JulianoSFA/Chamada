@@ -26,7 +26,7 @@ public class Student
     public string parentCellphone;
 
     public bool Activity;
-    public List<Attendance> attendance;
+    public List<Attendance> attendance; //lista de presença
 
     int count;
     int rowCount;
@@ -38,11 +38,11 @@ public class Student
         {
             if (!a.showedUp)
             {
-                count++;
+                count++; 
             }
         }
         return count;
-    }
+    }//Conta numero de faltas
 
     public int AbsencesInARow()
     {
@@ -62,5 +62,5 @@ public class Student
             rowCount = 0;
         }
         return rowCount;
-    }
+    }//conta faltas consecutivas
 }

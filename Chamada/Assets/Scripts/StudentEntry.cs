@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,13 +8,6 @@ public class StudentEntry : MonoBehaviour
     public Database db;
     public GameObject Button;
     public GameObject blankSpace;
-
-    GameObject content;
-
-    private void Start()
-    {
-        content = this.gameObject;
-    }
 
     public void SpawnButtons()
     {
@@ -26,9 +20,8 @@ public class StudentEntry : MonoBehaviour
         {
             foreach (Student s in db.studentList)
             {
-                GameObject InstantiatedButton = Instantiate(Button);
-                InstantiatedButton.transform.SetParent(transform, false);
-                InstantiatedButton.GetComponent<ShowStudent>().SetNames(s.sName, s.instrument);
+                GameObject InstantiatedButton = Instantiate(Button, this.transform);
+                InstantiatedButton.GetComponent<ShowStudent>().student = s;
             }
             blankSpace.SetActive(false);
         }
@@ -41,22 +34,22 @@ public class StudentEntry : MonoBehaviour
 
     public void ComputeAttendance()
     {
-        List<GameObject> childList = new List<GameObject>();
-        for (int i = 0; i < content.transform.childCount; i++)
+        foreach (Transform child in this.gameObject.transform)
         {
-            childList.Add(content.transform.GetChild(i).gameObject);
-            Debug.Log("Novo registo" + childList[i].name);
+            Student childStudent = child.gameObject.GetComponent<ShowStudent>().student;
+            bool toggle = child.gameObject.GetComponent<ShowStudent>().toggle;
+            childStudent.attendance.Add(new Attendance(DateTime.Now,toggle));
+            foreach (Attendance a in childStudent.attendance)
+            {
+                Debug.Log(a.date + " " + a.showedUp);
+            }
         }
-        foreach (GameObject child in childList)
-        {
-            child.GetComponent<ShowStudent>().SetAttendance();
-            Debug.Log(child.GetComponent<ShowStudent>().sName.ToString());
-        }
+        ClearEntry();
     }
 
-    public void ClearEntry()
+    void ClearEntry()
     {
-        foreach (Transform child in content.transform)
+        foreach (Transform child in this.gameObject.transform)
         {
             Destroy(child.gameObject);
         }
