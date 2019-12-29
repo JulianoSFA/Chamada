@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -36,10 +37,9 @@ public class StudentEntry : MonoBehaviour
     {
         foreach (Transform child in this.gameObject.transform)
         {
-            Student childStudent = child.gameObject.GetComponent<ShowStudent>().student;
-            bool toggle = child.gameObject.GetComponent<ShowStudent>().toggle;
-            childStudent.attendance.Add(new Attendance(DateTime.Now,toggle));
-            foreach (Attendance a in childStudent.attendance)
+            ShowStudent childStudent = child.gameObject.GetComponent<ShowStudent>();
+            childStudent.ComputeAttendance();
+            foreach (Attendance a in childStudent.student.attendance)
             {
                 Debug.Log(a.date + " " + a.showedUp);
             }

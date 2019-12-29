@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -16,5 +17,11 @@ public class ShowStudent : MonoBehaviour
     {
         sName.text = student.sName;
         instrument.text = student.instrument;
+    }
+
+    public void ComputeAttendance()
+    {
+        Attendance newAtt = new Attendance(DateTime.Now, toggle);
+        student.attendance.Add(newAtt);
     }
 }
