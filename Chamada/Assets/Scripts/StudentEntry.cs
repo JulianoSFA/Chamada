@@ -21,8 +21,11 @@ public class StudentEntry : MonoBehaviour
         {
             foreach (Student s in db.studentList)
             {
-                GameObject InstantiatedButton = Instantiate(Button, this.transform);
-                InstantiatedButton.GetComponent<ShowStudent>().student = s;
+                if (s.Activity)
+                {
+                    GameObject InstantiatedButton = Instantiate(Button, this.transform);
+                    InstantiatedButton.GetComponent<ShowStudent>().student = s;
+                }
             }
             blankSpace.SetActive(false);
         }

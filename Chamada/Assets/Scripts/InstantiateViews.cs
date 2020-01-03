@@ -25,8 +25,11 @@ public class InstantiateViews : MonoBehaviour
     {
         foreach (Student s in db.studentList)
         {
-            GameObject view = Instantiate(studentView, this.transform);
-            view.GetComponent<ShowViewValues>().Student = s;
+            if (s.Activity)
+            {
+                GameObject view = Instantiate(studentView, this.transform);
+                view.GetComponent<ShowViewValues>().Student = s;
+            }
         }
         yield return null;
     }

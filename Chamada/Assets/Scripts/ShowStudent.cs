@@ -21,7 +21,7 @@ public class ShowStudent : MonoBehaviour
 
     public void ComputeAttendance()
     {
-        Attendance newAtt = new Attendance(DateTime.Now, toggle);
+        Attendance newAtt = new Attendance(DateTime.Now, toggle.isOn);
         student.attendance.Add(newAtt);
     }
 }

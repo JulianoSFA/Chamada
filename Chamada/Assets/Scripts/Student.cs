@@ -26,7 +26,7 @@ public class Student
     public string parentCellphone;
 
     public bool Activity;
-    public List<Attendance> attendance; //lista de presença
+    public List<Attendance> attendance = new List<Attendance>(); //lista de presença
 
     int count;
     int rowCount;
