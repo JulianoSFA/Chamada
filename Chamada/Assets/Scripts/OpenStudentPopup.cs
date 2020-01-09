@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class OpenStudentPopup : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    void OpenPopup(GameObject scene, Student student)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        scene.SetActive(true);
+        scene.GetComponent<Visual>().student = student;
     }
 }

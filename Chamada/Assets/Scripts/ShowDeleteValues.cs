@@ -1,13 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
+using TMPro;
 
-public class ShowViewValues : Visual
+public class ShowDeleteValues : Visual
 {
     public TextMeshProUGUI sName;
     public TextMeshProUGUI instrument;
-    public TextMeshProUGUI abscenses;
 
     private void Start()
     {
@@ -18,7 +17,6 @@ public class ShowViewValues : Visual
     {
         sName.text = student.sName;
         instrument.text = student.instrument;
-        abscenses.text = student.Absences().ToString();
         yield return null;
     }
 }

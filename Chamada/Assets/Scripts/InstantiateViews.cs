@@ -28,7 +28,7 @@ public class InstantiateViews : MonoBehaviour
             if (s.Activity)
             {
                 GameObject view = Instantiate(studentView, this.transform);
-                view.GetComponent<ShowViewValues>().Student = s;
+                view.GetComponent<Visual>().student = s;
             }
         }
         yield return null;
