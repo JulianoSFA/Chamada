@@ -16,6 +16,11 @@ public class MenuController : MonoBehaviour
         scene.SetActive(true);
     }
 
+    public void CloseScene(GameObject scene)
+    {
+        scene.SetActive(false);
+    }
+
     public void CloseAllScenes()
     {
         entry.SetActive(false);

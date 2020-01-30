@@ -16,7 +16,7 @@ public class ShowViewValues : Visual
 
     IEnumerator StartView()
     {
-        sName.text = student.sName;
+        sName.text = student.ShortName();
         instrument.text = student.instrument;
         abscenses.text = student.Absences().ToString();
         yield return null;

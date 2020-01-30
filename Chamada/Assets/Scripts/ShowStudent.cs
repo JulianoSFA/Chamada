@@ -15,7 +15,7 @@ public class ShowStudent : MonoBehaviour
 
     void Start()
     {
-        sName.text = student.sName;
+        sName.text = student.ShortName();
         instrument.text = student.instrument;
     }
 

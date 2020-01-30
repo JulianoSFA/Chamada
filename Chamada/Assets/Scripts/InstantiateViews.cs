@@ -6,6 +6,7 @@ public class InstantiateViews : MonoBehaviour
 {
     public Database db;
     public GameObject studentView;
+    public GameObject popup;
 
     private void OnEnable()
     {
@@ -28,7 +29,9 @@ public class InstantiateViews : MonoBehaviour
             if (s.Activity)
             {
                 GameObject view = Instantiate(studentView, this.transform);
-                view.GetComponent<Visual>().student = s;
+                Visual viewProperties = view.GetComponent<Visual>();
+                viewProperties.student = s;
+                viewProperties.popup = popup;
             }
         }
         yield return null;

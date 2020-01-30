@@ -5,4 +5,5 @@ using UnityEngine;
 public class Visual : MonoBehaviour
 {
     public Student student;
+    public GameObject popup;
 }

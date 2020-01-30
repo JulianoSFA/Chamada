@@ -15,8 +15,14 @@ public class ShowDeleteValues : Visual
 
     IEnumerator StartView()
     {
-        sName.text = student.sName;
+        sName.text = student.ShortName();
         instrument.text = student.instrument;
         yield return null;
+    }
+
+    public void OpenDeletePopup()
+    {
+        popup.SetActive(true);
+        popup.GetComponent<DeletePopupValues>().student = student;
     }
 }

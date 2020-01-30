@@ -63,4 +63,22 @@ public class Student
         }
         return rowCount;
     }//conta faltas consecutivas
+
+    public string ShortName()
+    {
+        string[] names = sName.Split(' ');
+        string finalName = names[0];
+        for (int i = 1; i < names.Length; i++)
+        {
+            string middleName = names[i];
+            char abbreviation = middleName[0];
+            finalName += " " + abbreviation + ".";
+        }
+        return finalName;
+    }
+
+    public void SetActivity(bool activity)
+    {
+        Activity = activity;
+    }
 }

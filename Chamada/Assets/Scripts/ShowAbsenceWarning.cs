@@ -7,36 +7,46 @@ public class ShowAbsenceWarning : MonoBehaviour
     public Database db;
     public int WarningValue;
 
+    public GameObject popup;
+    public GameObject warningTab;
+
     // Start is called before the first frame update
     void Start()
     {
-        //StartCoroutine(AbsenceWarning());
+        StartCoroutine(AbsenceWarning());
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log("começo instancia");
+            Student sTest = new Student();
+            sTest.sName = "Teste Nome";
+            GameObject test = Instantiate(popup, warningTab.transform);
+            test.GetComponent<WarningPopup>().WarningSetup(sTest);
+            Debug.Log("Fim instancia");
+        }
     }
 
     IEnumerator AbsenceWarning()
     {
-        List<GameObject> items = new List<GameObject>();
-        foreach (Student s in db.studentList)
+        yield return new WaitForSecondsRealtime(0.5f);
+        if(db.studentList.Count > 0)
         {
-            if (s.AbsencesInARow() > WarningValue)
+            foreach (Student s in db.studentList)
             {
-                //instancia um pop-up no menu principal fazendo um alerta com o nome da pessoa
-                //adiciona a instancia na lista "items"
-                new WaitForSecondsRealtime(0.2f);
+                if (s.AbsencesInARow() > WarningValue & s.Activity)
+                {
+                    GameObject instantiatedWarning = Instantiate(popup, warningTab.transform);
+                    instantiatedWarning.GetComponent<WarningPopup>().WarningSetup(s);
+                    yield return new WaitForSecondsRealtime(0.3f);
+                }
             }
-            else
-                break;
         }
-
-        new WaitForSecondsRealtime(5);
-    
-        foreach (GameObject i in items)
+        else
         {
-            Destroy(i);
-            new WaitForSecondsRealtime(0.5f);
+            yield return null;
         }
-
-        yield return null;
     }
-
 }
